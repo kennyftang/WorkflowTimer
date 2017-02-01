@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.ComponentView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
@@ -123,7 +122,7 @@ class WorkflowTimer extends JFrame implements Runnable {
         timePanel.add(taskPanel, taskPanelC);
 
         taskListLabel = new JLabel("Task List");
-        taskListLabel.setFont(new Font("Helvetica", Font.BOLD, 24));
+        taskListLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
         taskListLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         taskPanel.add(taskListLabel);
@@ -136,7 +135,7 @@ class WorkflowTimer extends JFrame implements Runnable {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setAlwaysOnTop(true);
         this.setVisible(true);
-        this.setPreferredSize(new Dimension(350, 150));
+        this.setPreferredSize(new Dimension(400, 150));
         this.pack();
 
         //Thread used to keep time
@@ -197,7 +196,11 @@ class WorkflowTimer extends JFrame implements Runnable {
             else
                 timeString = String.format("%02d:%02d\t\t", elapsedSeconds, elapsedMilli);
             //Set the time label's text to the timeString
-            timeText.setText(timeString);
+            if(timeString.length() != timeText.getText().length()) {
+                timeText.setText(timeString);
+                this.pack();
+            } else
+                timeText.setText(timeString);
         }
     }
 
