@@ -204,7 +204,6 @@ class WorkflowTimer extends JFrame implements Runnable {
         public void mouseClicked(MouseEvent e) {
             WorkflowTimer.this.taskPanel.remove(e.getComponent());
             newTask = true;
-            System.out.println(WorkflowTimer.this.getSize());
         }
 
         @Override
