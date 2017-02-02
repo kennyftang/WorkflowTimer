@@ -196,6 +196,9 @@ class WorkflowTimer extends JFrame implements Runnable {
                 this.pack();
             } else
                 timeText.setText(timeString);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {}
         }
     }
 
