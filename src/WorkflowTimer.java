@@ -26,7 +26,7 @@ class WorkflowTimer extends JFrame implements Runnable {
     //Initiation
     WorkflowTimer() {
         //Default time value
-        timeString = "00:00\t\t";
+        timeString = "00.00\t\t";
         //Panel contains the task list
         taskPanel = new JPanel();
         //Set the default text of the label to default time value
@@ -114,7 +114,7 @@ class WorkflowTimer extends JFrame implements Runnable {
         long elapsedMin = TimeUnit.MILLISECONDS.toMinutes(timeElapsed) % 60;
         long elapsedHours = TimeUnit.MILLISECONDS.toHours(timeElapsed);
         //Format the name with the time
-        name += String.format("\t\t%02d:%02d:%02d", elapsedHours, elapsedMin, elapsedSeconds);
+        name += String.format("\t\t%02d:%02d.%02d", elapsedHours, elapsedMin, elapsedSeconds);
         //Create a JLabel with the name and time
         JLabel task = new JLabel(name);
         //Set the label to align to the right
@@ -135,7 +135,7 @@ class WorkflowTimer extends JFrame implements Runnable {
             switch (currentText) {
                 case "Reset":
                     theTime = 0;
-                    timeString = "00:00\t\t";
+                    timeString = "00.00\t\t";
                     timeText.setText(timeString);
                     this.timeLeft.setEnabled(false);
                     taskPanel.removeAll();
@@ -185,11 +185,11 @@ class WorkflowTimer extends JFrame implements Runnable {
             long elapsedHours = TimeUnit.MILLISECONDS.toHours(theTime);
             //Find out how many colons we need and format the string as appropriate
             if (elapsedHours > 0)
-                timeString = String.format("%02d:%02d:%02d:%02d\t\t", elapsedHours, elapsedMin, elapsedSeconds, elapsedMilli);
+                timeString = String.format("%02d:%02d:%02d.%02d\t\t", elapsedHours, elapsedMin, elapsedSeconds, elapsedMilli);
             else if (elapsedMin > 0)
-                timeString = String.format("%02d:%02d:%02d\t\t", elapsedMin, elapsedSeconds, elapsedMilli);
+                timeString = String.format("%02d:%02d.%02d\t\t", elapsedMin, elapsedSeconds, elapsedMilli);
             else
-                timeString = String.format("%02d:%02d\t\t", elapsedSeconds, elapsedMilli);
+                timeString = String.format("%02d.%02d\t\t", elapsedSeconds, elapsedMilli);
             //Set the time label's text to the timeString
             if (timeString.length() != timeText.getText().length()) {
                 timeText.setText(timeString);
